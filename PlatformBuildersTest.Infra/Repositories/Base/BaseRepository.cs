@@ -3,6 +3,7 @@ using PlatformBuildersTest.Domain.Contracts.Repositories.Base;
 using PlatformBuildersTest.Domain.Entities.Base;
 using PlatformBuildersTest.Domain.Objects;
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace PlatformBuildersTest.Infra.Repositories.Base
@@ -23,6 +24,11 @@ namespace PlatformBuildersTest.Infra.Repositories.Base
         public void Add(TEntity obj)
         {
             _bts.InsertOne(obj);
+        }
+
+        public IEnumerable<TEntity> GetMany(Expression<Func<TEntity, bool>> query)
+        {
+            return _bts.Find(query).ToEnumerable();
         }
 
         public TEntity Get(Expression<Func<TEntity, bool>> query)

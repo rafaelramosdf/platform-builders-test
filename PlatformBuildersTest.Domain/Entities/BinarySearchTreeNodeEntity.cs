@@ -13,6 +13,14 @@ namespace PlatformBuildersTest.Domain.Entities
             Value = value;
         }
 
+        public BinarySearchTreeNodeEntity(int value, int parent, int left, int right)
+        {
+            Value = value;
+            Parent = parent;
+            Left = left;
+            Right = right;
+        }
+
         public int Value 
         {
             get => Id;
