@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using PlatformBuildersTest.Domain.Contracts.Services;
 using PlatformBuildersTest.Domain.Entities;
 using System;
+using System.Net;
 
 namespace PlatformBuildersTest.Api.Controllers
 {
@@ -24,11 +25,15 @@ namespace PlatformBuildersTest.Api.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PalindromeEntity))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
         public IActionResult Get([FromQuery] string text)
         {
             try
             {
+                if (string.IsNullOrEmpty(text))
+                    return Problem("Informe o parâmetro 'text'", null, StatusCodes.Status400BadRequest, HttpStatusCode.BadRequest.ToString());
+
                 var palindrome = new PalindromeEntity(text);
                 var palindromeResult = _palindromeService.CheckPalindrome(palindrome);
                 return Ok(palindromeResult);
