@@ -1,10 +1,9 @@
-﻿using PlatformBuildersTest.Domain.Entities;
-using System.Collections.Generic;
+﻿using PlatformBuildersTest.Domain.Contracts.Repositories.Base;
+using PlatformBuildersTest.Domain.Entities;
 
 namespace PlatformBuildersTest.Domain.Contracts.Repositories
 {
-    public interface IBinarySearchTreeNodeRepository
+    public interface IBinarySearchTreeNodeRepository : IBaseRepository<BinarySearchTreeNodeEntity>
     {
-        BinarySearchTreeNodeEntity Get(int value);
     }
 }

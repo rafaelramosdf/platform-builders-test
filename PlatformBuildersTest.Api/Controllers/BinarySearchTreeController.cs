@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using PlatformBuildersTest.Domain.Contracts.Services;
 using PlatformBuildersTest.Domain.Entities;
 using System;
-using System.Net;
 
 namespace PlatformBuildersTest.Api.Controllers
 {
@@ -31,9 +30,6 @@ namespace PlatformBuildersTest.Api.Controllers
         {
             try
             {
-                if (value < 1)
-                    return Problem("Informe o parâmetro 'value'", null, StatusCodes.Status400BadRequest, HttpStatusCode.BadRequest.ToString());
-
                 var binarySearchTreeNodeResult = _binarySearchTreeService.Get(value);
                 return Ok(binarySearchTreeNodeResult);
             }

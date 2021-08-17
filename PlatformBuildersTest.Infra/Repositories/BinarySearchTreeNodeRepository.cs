@@ -1,15 +1,17 @@
 ﻿using PlatformBuildersTest.Domain.Contracts.Repositories;
 using PlatformBuildersTest.Domain.Entities;
-using System.Collections.Generic;
+using PlatformBuildersTest.Domain.Objects;
+using PlatformBuildersTest.Infra.Repositories.Base;
 
 namespace PlatformBuildersTest.Infra.Repositories
 {
-    public class BinarySearchTreeNodeRepository : IBinarySearchTreeNodeRepository
+    public class BinarySearchTreeNodeRepository : BaseRepository<BinarySearchTreeNodeEntity>, IBinarySearchTreeNodeRepository
     {
-        public BinarySearchTreeNodeEntity Get(int value)
+        private readonly IMongoDbSettingsObject _mongoDbSettings;
+
+        public BinarySearchTreeNodeRepository(IMongoDbSettingsObject mongoDbSettings)
+            : base(mongoDbSettings)
         {
-            // TODO: A Implementar
-            return new BinarySearchTreeNodeEntity(50);
         }
     }
 }

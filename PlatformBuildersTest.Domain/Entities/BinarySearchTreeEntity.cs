@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using PlatformBuildersTest.Domain.Entities.Base;
+using System.Collections.Generic;
 
 namespace PlatformBuildersTest.Domain.Entities
 {
@@ -7,7 +9,7 @@ namespace PlatformBuildersTest.Domain.Entities
         public IEnumerable<BinarySearchTreeNodeEntity> Tree { get; set; } = new List<BinarySearchTreeNodeEntity>();
     }
 
-    public class BinarySearchTreeNodeEntity
+    public class BinarySearchTreeNodeEntity : BaseEntity
     {
         public BinarySearchTreeNodeEntity()
         {
@@ -17,9 +19,14 @@ namespace PlatformBuildersTest.Domain.Entities
             Value = value;
         }
 
-        public int Value { get; set; }
-        public BinarySearchTreeNodeEntity Parent { get; set; }
-        public BinarySearchTreeNodeEntity Left { get; set; }
-        public BinarySearchTreeNodeEntity Right { get; set; }
+        [BsonIgnoreAttribute]
+        public int Value 
+        {
+            get => Id;
+            set => Id = value;
+        }
+        public int Parent { get; set; }
+        public int Left { get; set; }
+        public int Right { get; set; }
     }
 }

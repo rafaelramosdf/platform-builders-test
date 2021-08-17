@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using PlatformBuildersTest.Domain.Contracts.Repositories;
 using PlatformBuildersTest.Domain.Contracts.Services;
+using PlatformBuildersTest.Domain.Objects;
 using PlatformBuildersTest.Infra.Repositories;
 using PlatformBuildersTest.Service.Services;
 
@@ -22,6 +24,9 @@ namespace PlatformBuildersTest.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<MongoDbSettingsObject>(Configuration.GetSection("MongoDbSettings"));
+            services.AddSingleton<IMongoDbSettingsObject>(sp => sp.GetRequiredService<IOptions<MongoDbSettingsObject>>().Value);
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
