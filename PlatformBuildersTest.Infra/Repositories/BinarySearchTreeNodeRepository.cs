@@ -7,8 +7,6 @@ namespace PlatformBuildersTest.Infra.Repositories
 {
     public class BinarySearchTreeNodeRepository : BaseRepository<BinarySearchTreeNodeEntity>, IBinarySearchTreeNodeRepository
     {
-        private readonly IMongoDbSettingsObject _mongoDbSettings;
-
         public BinarySearchTreeNodeRepository(IMongoDbSettingsObject mongoDbSettings)
             : base(mongoDbSettings)
         {

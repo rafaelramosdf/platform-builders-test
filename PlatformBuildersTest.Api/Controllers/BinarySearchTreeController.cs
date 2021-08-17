@@ -22,6 +22,24 @@ namespace PlatformBuildersTest.Api.Controllers
             _binarySearchTreeService = binarySearchTreeService;
         }
 
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(BinarySearchTreeNodeEntity))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetails))]
+        public IActionResult Post([FromBody] BinarySearchTreeNodeEntity model)
+        {
+            try
+            {
+                var binarySearchTreeNodeResult = _binarySearchTreeService.Add(model);
+                return Created($"binary-search-trees/{binarySearchTreeNodeResult.Id}", binarySearchTreeNodeResult);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message, model);
+                return Problem(ex.InnerException?.Message, null, StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
         [HttpGet("{value:int}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(BinarySearchTreeNodeEntity))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ProblemDetails))]

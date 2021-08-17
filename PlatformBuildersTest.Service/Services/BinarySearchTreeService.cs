@@ -6,16 +6,27 @@ namespace PlatformBuildersTest.Service.Services
 {
     public class BinarySearchTreeService : IBinarySearchTreeService
     {
-        private readonly IBinarySearchTreeNodeRepository _binarySearchTreeNodeRepository;
+        private readonly IBinarySearchTreeNodeRepository _btsRepository;
 
-        public BinarySearchTreeService(IBinarySearchTreeNodeRepository binarySearchTreeNodeRepository)
+        public BinarySearchTreeService(IBinarySearchTreeNodeRepository btsRepository)
         {
-            _binarySearchTreeNodeRepository = binarySearchTreeNodeRepository;
+            _btsRepository = btsRepository;
+        }
+
+        public BinarySearchTreeNodeEntity Add(BinarySearchTreeNodeEntity entity)
+        {
+            _btsRepository.Add(entity);
+            return entity;
+        }
+
+        public void Remove(BinarySearchTreeNodeEntity entity)
+        {
+            _btsRepository.Remove(entity);
         }
 
         public BinarySearchTreeNodeEntity Get(int value)
         {
-            return _binarySearchTreeNodeRepository.Get(value);
+            return _btsRepository.Get(value);
         }
     }
 }
