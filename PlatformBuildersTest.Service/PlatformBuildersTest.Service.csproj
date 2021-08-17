@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PlatformBuildersTest.Domain\PlatformBuildersTest.Domain.csproj" />
+    <ProjectReference Include="..\PlatformBuildersTest.Infra\PlatformBuildersTest.Infra.csproj" />
+  </ItemGroup>
+
+</Project>
