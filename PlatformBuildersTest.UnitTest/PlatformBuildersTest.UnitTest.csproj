@@ -19,4 +19,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PlatformBuildersTest.Domain\PlatformBuildersTest.Domain.csproj" />
+    <ProjectReference Include="..\PlatformBuildersTest.Service\PlatformBuildersTest.Service.csproj" />
+  </ItemGroup>
+
 </Project>
