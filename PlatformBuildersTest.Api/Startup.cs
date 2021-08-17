@@ -4,7 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using PlatformBuildersTest.Domain.Contracts.Repositories;
 using PlatformBuildersTest.Domain.Contracts.Services;
+using PlatformBuildersTest.Infra.Repositories;
 using PlatformBuildersTest.Service.Services;
 
 namespace PlatformBuildersTest.Api
@@ -27,6 +29,8 @@ namespace PlatformBuildersTest.Api
             });
 
             services.AddTransient<IPalindromeService, PalindromeService>();
+            services.AddTransient<IBinarySearchTreeService, BinarySearchTreeService>();
+            services.AddTransient<IBinarySearchTreeNodeRepository, BinarySearchTreeNodeRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
